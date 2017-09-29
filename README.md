@@ -1,14 +1,12 @@
-todo-app
+## todo-app
 
-install instructions
+### install instructions
 
-1- build the backend executable jar
->cd backend
->mvn install
+make sure latest docker installed
 
-2- cd to parent director
+* cd to project director
 >docker-compose up
 
-3- goto 
-frontend at http://localhost:4200
-backend at http://localhost:8080
+* goto 
+  * [frontend] (http://localhost:4200)
+  * [backend] (http://localhost:8080)
