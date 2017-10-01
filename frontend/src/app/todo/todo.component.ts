@@ -17,8 +17,7 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  markComplete(cb): void {
-    this.todo.complete = cb;
+  updateCompleteFlag(): void {
     this.todoService.save(this.todo);
   }
 

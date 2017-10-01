@@ -1,18 +1,44 @@
-Add ToDo
-<input type="text" #newItem />
-<button (click)="addTodo(newItem.value); newItem.value = '';">+</button>
+<div class="container">
+	<h1>Add ToDo</h1>
+	<form #newTodoForm="ngForm" (ngSubmit)="addTodo()" class="form-inline">
+		<div class="form-group">
+			<label for="newTodoTxt">ToDo</label> <input id="newTodoTxt"
+				name="newTodoTxt" class="form-control" type="text" required
+				[(ngModel)]="newTodo.text" #newTodoTxt="ngModel" />
+		</div>
+		<div class="checkbox">
+			<label for="newTodoComp">Complete?</label> <input id="newTodoComp"
+				name="newTodoComp" class="form-control" type="checkbox"
+				[(ngModel)]="newTodo.complete" />
+		</div>
+		<button type="submit" class="btn btn-primary"
+			[disabled]="!newTodoForm.form.valid">Add</button>
+	</form>
+</div>
 
-<select #sel (change)="filter(sel.value)">
-	<option value="all" selected="selected">all</option>
-	<option value="complete">complete</option>
-	<option value="pending">pending</option>
-</select>
 
-<h2>ToDo</h2>
-<ul>
-	<li *ngFor="let t of todos | completionfilter : complete ">
-		<todo [todo]="t"></todo>
-		<button (click)="deleteTodo(t)">X</button>
-	</li>
-</ul>
+<div class="container">
+	<h1>ToDos</h1>
+	<div class="row">
+		<div class="col-md-2">
+			<select #sel (change)="filter(sel.value)" class="form-control">
+				<option value="all" selected="selected">all</option>
+				<option value="complete">complete</option>
+				<option value="pending">pending</option>
+			</select>
+		</div>
+		<div class="col-md-10"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">-</div>
+	</div>
+	<div class="row" *ngFor="let t of todos | completionfilter : complete ">
+		<div class="col-md-1">
+			<button class="btn btn-danger" (click)="deleteTodo(t)">X</button>
+		</div>
+		<div class="col-md-11">
+			<todo [todo]="t"></todo>
+		</div>
+	</div>
+</div>
 

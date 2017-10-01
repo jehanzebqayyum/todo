@@ -1,2 +1,9 @@
-{{todo.id}} {{todo.text}}
-<input type="checkbox" #cb1 [checked]="todo.complete" name="complete" (change)="markComplete(cb1.checked)"/>
+<div class="row">
+	<div class="col-md-1">
+		<input id="todoComp" name="todoComp" type="checkbox"
+			[(ngModel)]="todo.complete" (change)="updateCompleteFlag()" />
+	</div>
+	<div class="col-md-1">{{todo.id}}</div>
+	<div class="col-md-8">{{todo.text}}</div>
+
+</div>

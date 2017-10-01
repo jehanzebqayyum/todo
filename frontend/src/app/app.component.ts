@@ -13,16 +13,13 @@ export class AppComponent {
   title = 'todo app';
   todos: Todo[] = new Array();
   complete: boolean = null;
+  newTodo = new Todo("");
 
   constructor(private todoService: TodoService) {
   }
 
   ngOnInit(): void {
     this.todoService.findAll().then(found => {console.log(found); this.todos = found;});
-  }
-
-  addTodo(todoText: string): void {
-    this.todoService.save({text: todoText}).then(todo => {this.todos.push(todo);});
   }
 
   deleteTodo(todel: Todo): void {
@@ -40,6 +37,11 @@ export class AppComponent {
     else {
       this.complete = null;
     }
+  }
+  
+  addTodo(): void {
+    this.todoService.save(this.newTodo).then(todo => {this.todos.push(todo);});
+    this.newTodo = new Todo(" ");
   }
 
 
